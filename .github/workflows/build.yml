@@ -67,5 +67,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: can-i-deploy
     steps:
-    - uses: actions/checkout@v3
-    - run: docker pull pactfoundation/pact-cli:latest .env echo "\n========== STAGE: can-i-deploy? ==========\n" "${PACT_CLI}" broker can-i-deploy --pacticipant ${PACTICIPANT} --version ${GIT_COMMIT} --to-environment ${ENVIRONMENT} --retry-while-unknown 30 --retry-interval 10
+      - uses: actions/checkout@v3
+      - run: docker pull pactfoundation/pact-cli:latest .env echo"\n========== STAGE can-i-deploy? ==========\n" "${PACT_CLI}" broker can-i-deploy --pacticipant ${PACTICIPANT} --version ${GIT_COMMIT} --to-environment ${ENVIRONMENT} --retry-while-unknown 30 --retry-interval 10
