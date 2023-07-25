@@ -20,7 +20,7 @@ env:
   GITHUB_ORG: "pactflow"
   PACTICIPANT: "pact-exploration"
   GITHUB_WEBHOOK_UUID: "04510dc1-7f0a-4ed2-997d-114bfa86f8ad"
-  PACT_CLI: "docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli"
+  PACT_CLI: "docker run --rm -v ${PWD}:${PWD} -e $PACT_BROKER_BASE_URL -e $PACT_BROKER_TOKEN pactfoundation/pact-cli"
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
     steps:
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: PROJECT_PATH/PROJECT_NAME.Tests
+      working-directory: $PROJECT_PATH/$PROJECT_NAME.Tests
   
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy:
