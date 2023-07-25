@@ -40,9 +40,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    steps:
-    - name: Test
-      strategy:
+    strategy:
         matrix:
           pact_provider: [
               # "pactflow-example-bi-directional-provider-dredd",
@@ -51,6 +49,8 @@ jobs:
               #'pactflow-example-provider'
               'PostmanApi'
           ]
+    steps:
+    - name: Test
       run: dotnet test --no-build --verbosity normal
   
   # Runs on branches as well, so we know the status of our PRs
