@@ -20,7 +20,7 @@ env:
   GITHUB_ORG: "pactflow"
   PACTICIPANT: "pact-exploration"
   GITHUB_WEBHOOK_UUID: "04510dc1-7f0a-4ed2-997d-114bfa86f8ad"
-  PACT_CLI: "docker run --rm -v ${PWD}:${PWD} -e $PACT_BROKER_BASE_URL -e $PACT_BROKER_TOKEN pactfoundation/pact-cli"
+  PACT_CLI: "docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli"
 
 jobs:
   build:
@@ -36,11 +36,11 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ${PROJECT_PATH}
+      working-directory: ${{ PROJECT_NAME }}
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ${PROJECT_PATH}
+      working-directory: ${{ PROJECT_NAME }}
 
   test:
     runs-on: ubuntu-latest
