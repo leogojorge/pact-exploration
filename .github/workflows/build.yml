@@ -5,10 +5,10 @@ name: Build
 
 on:
   push:
-    workflow_dispatch:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 env:
   PROJECT_PATH: pact-exploration
