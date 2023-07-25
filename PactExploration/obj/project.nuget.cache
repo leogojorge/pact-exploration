@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4/yGBc6QriCMyBberPv0SIilRadeh78RNyB3fAhfnddbtqtlQKInREfprLVan+GMnHOXo57F0xzeF1rdKqjwqQ==",
+  "dgSpecHash": "prEtRL1Uoc78uADQ79aQCbpZj19yEpKiYFPn7EpVA9frTwvsPQW+9QxIJ89EDTY/OZWG+Dsm+0/eTYlq1fdDYw==",
   "success": true,
-  "projectFilePath": "C:\\Projetos\\TestandoPact\\PactExploration\\PactExploration.csproj",
+  "projectFilePath": "C:\\Projetos\\pact-exploration\\PactExploration\\PactExploration.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leonardo.jorge\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\leonardo.jorge\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

@@ -273,11 +273,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\TestandoPact\\PactExploration\\PactExploration.csproj",
+      "projectUniqueName": "C:\\Projetos\\pact-exploration\\PactExploration\\PactExploration.csproj",
       "projectName": "PactExploration",
-      "projectPath": "C:\\Projetos\\TestandoPact\\PactExploration\\PactExploration.csproj",
+      "projectPath": "C:\\Projetos\\pact-exploration\\PactExploration\\PactExploration.csproj",
       "packagesPath": "C:\\Users\\leonardo.jorge\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\TestandoPact\\PactExploration\\obj\\",
+      "outputPath": "C:\\Projetos\\pact-exploration\\PactExploration\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\leonardo.jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",

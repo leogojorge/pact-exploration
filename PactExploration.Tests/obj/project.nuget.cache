@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f9BDAdQWs/2q7WWoMnwBNJrCOD6otHbLhQUnnmstsv97bSuyTsz5D1eLilGQ9hism3R6myvVxhj6DaA5b0fksA==",
+  "dgSpecHash": "nqfUtnarq+77mL7pUCEX6nzYomMFx2I8ADGRBRNRkvfMJSxwDtbfpq3x7NGmyKpjiDJMGX70lfwP9nWmk41t6w==",
   "success": true,
-  "projectFilePath": "C:\\Projetos\\TestandoPact\\PactExploration.Tests\\PactExploration.Tests.csproj",
+  "projectFilePath": "C:\\Projetos\\pact-exploration\\PactExploration.Tests\\PactExploration.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leonardo.jorge\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\leonardo.jorge\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

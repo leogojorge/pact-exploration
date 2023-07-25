@@ -11,6 +11,8 @@ on:
     branches: [ "main" ]
 
 env:
+  PROJECT_PATH: pact-exploration
+  PROJECT_NAME: PactExploration
   PACT_BROKER_BASE_URL: https://stonepagamentos.pactflow.io
   PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_CI_CD_WORKSHOP }}
   GIT_COMMIT: ${{ github.sha }}
@@ -52,6 +54,7 @@ jobs:
     steps:
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: PROJECT_PATH/PROJECT_NAME.Tests
   
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy:
