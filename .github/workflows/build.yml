@@ -36,11 +36,11 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ${{ PROJECT_NAME }}
+      working-directory: $PROJECT_NAME
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ${{ PROJECT_NAME }}
+      working-directory: $PROJECT_NAME
 
   test:
     runs-on: ubuntu-latest
