@@ -36,11 +36,11 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: $PROJECT_PATH
+      working-directory: ${PROJECT_PATH}
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ${PROJECT_PATH}/
+      working-directory: ${PROJECT_PATH}
 
   test:
     runs-on: ubuntu-latest
