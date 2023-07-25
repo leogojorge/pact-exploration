@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "4/yGBc6QriCMyBberPv0SIilRadeh78RNyB3fAhfnddbtqtlQKInREfprLVan+GMnHOXo57F0xzeF1rdKqjwqQ==",
+  "success": true,
+  "projectFilePath": "C:\\Projetos\\TestandoPact\\PactExploration\\PactExploration.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\leonardo.jorge\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

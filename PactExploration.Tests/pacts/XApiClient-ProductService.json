@@ -1,0 +1,62 @@
+{
+  "consumer": {
+    "name": "ApiClient"
+  },
+  "interactions": [
+    {
+      "description": "A get for the Postmang/Get API (our provider)",
+      "providerStates": [
+        {
+          "name": "All seted up properlly"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/get"
+      },
+      "response": {
+        "body": {
+          "args": {},
+          "headers": {
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "cache-control": "no-cache",
+            "host": "postman-echo.com",
+            "user-agent": "PostmanRuntime/7.32.3",
+            "x-forwarded-port": "80",
+            "x-forwarded-proto": "http"
+          },
+          "url": "http://postman-echo.com/get"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "version": "0.9.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "ProductService"
+  }
+}
