@@ -34,7 +34,7 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore -s https://pactfoundation.jfrog.io/artifactory/api/nuget/default-nuget-local
+      run: dotnet restore
       working-directory: PactExploration
 
     - name: Build
