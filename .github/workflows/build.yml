@@ -44,18 +44,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
+    strategy:
+      matrix:
+        pact_provider: [
+            # "pactflow-example-bi-directional-provider-dredd",
+            # "pactflow-example-bi-directional-provider-restassured",
+            # "pactflow-example-bi-directional-provider-postman",
+            #'pactflow-example-provider'
+            'PostmanApi'
+        ]
     steps:
     - uses: actions/checkout@v3
     - name: Test
-      strategy:
-        matrix:
-          pact_provider: [
-              # "pactflow-example-bi-directional-provider-dredd",
-              # "pactflow-example-bi-directional-provider-restassured",
-              # "pactflow-example-bi-directional-provider-postman",
-              #'pactflow-example-provider'
-              'PostmanApi'
-          ]
       run: dotnet test --no-build --verbosity normal
       working-directory: PactExploration.Tests
   
