@@ -42,10 +42,12 @@ jobs:
       working-directory: PactExploration
 
   test:
-    - uses: actions/checkout@v3
-    needs: build
     runs-on: ubuntu-latest
-    strategy:
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      strategy:
         matrix:
           pact_provider: [
               # "pactflow-example-bi-directional-provider-dredd",
@@ -54,8 +56,6 @@ jobs:
               #'pactflow-example-provider'
               'PostmanApi'
           ]
-    steps:
-    - name: Test
       run: dotnet test --no-build --verbosity normal
       working-directory: PactExploration.Tests
   
