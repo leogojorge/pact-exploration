@@ -42,7 +42,6 @@ jobs:
       working-directory: PactExploration
 
   test:
-    - name: Testando Td
     needs: build
     runs-on: ubuntu-latest
     strategy:
