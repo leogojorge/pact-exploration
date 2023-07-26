@@ -35,14 +35,10 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-    - uses: actions/checkout@v3
-      uses: actions/setup-dotnet@v3
       run: dotnet restore
       working-directory: PactExploration
 
     - name: Build
-    - uses: actions/checkout@v3
-      uses: actions/setup-dotnet@v3
       run: dotnet build --no-restore
       working-directory: PactExploration
 
@@ -78,4 +74,13 @@ jobs:
     needs: can-i-deploy
     steps:
       - uses: actions/checkout@v3
-      - run: docker pull pactfoundation/pact-cli:latest .env echo"\n========== STAGE can-i-deploy? ==========\n" "${PACT_CLI}" broker can-i-deploy --pacticipant ${PACTICIPANT} --version ${GIT_COMMIT} --to-environment ${ENVIRONMENT} --retry-while-unknown 30 --retry-interval 10
+      - run: | 
+      docker pull pactfoundation/pact-cli:latest 
+      .env 
+      echo"\n========== STAGE can-i-deploy? ==========\n" 
+      "${PACT_CLI}" broker can-i-deploy 
+      --pacticipant ${PACTICIPANT} 
+      --version ${GIT_COMMIT} 
+      --to-environment ${ENVIRONMENT} 
+      --retry-while-unknown 30 
+      --retry-interval 10
