@@ -447,14 +447,11 @@
           }
         }
       },
-      "PactNet/4.0.0-4386091": {
+      "PactNet/4.0.0": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "10.0.3",
-          "System.Diagnostics.Process": "4.3.0",
-          "System.Net.Http": "4.3.4",
-          "System.Runtime.Loader": "4.3.0",
-          "System.Threading.Thread": "4.3.0"
+          "PactNet.Abstractions": "4.0.0",
+          "System.Net.Http": "4.3.4"
         },
         "compile": {
           "lib/netstandard2.0/PactNet.dll": {
@@ -463,6 +460,37 @@
         },
         "runtime": {
           "lib/netstandard2.0/PactNet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libpact_ffi.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-x64/native/libpact_ffi.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/pact_ffi.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "PactNet.Abstractions/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.3",
+          "System.Net.Http": "4.3.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/PactNet.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/PactNet.Abstractions.dll": {
             "related": ".xml"
           }
         }
@@ -2805,18 +2833,37 @@
         "nuget.frameworks.nuspec"
       ]
     },
-    "PactNet/4.0.0-4386091": {
-      "sha512": "BiHXB5QFKNbyFouj2wzva2uIMJFArSUysGcgALuv8qn9OugahYwPxgfJFJpdhOheRNGfYITSwLkdQgac9YSbUQ==",
+    "PactNet/4.0.0": {
+      "sha512": "Yhc6FI70vkblMa2+qEJKz50ROAxcXNj2HrykUhZC21QhXrgKVMlPYWZY4R0FAh2DmFrosOZ6kjxgwnDAu3TWdw==",
       "type": "package",
-      "path": "pactnet/4.0.0-4386091",
+      "path": "pactnet/4.0.0",
       "files": [
         ".nupkg.metadata",
-        "lib/netstandard1.5/PactNet.dll",
-        "lib/netstandard1.5/PactNet.xml",
+        ".signature.p7s",
+        "build/net461/PactNet.targets",
+        "buildTransitive/net461/PactNet.targets",
         "lib/netstandard2.0/PactNet.dll",
         "lib/netstandard2.0/PactNet.xml",
-        "pactnet.4.0.0-4386091.nupkg.sha512",
-        "pactnet.nuspec"
+        "logo-128x128.png",
+        "pactnet.4.0.0.nupkg.sha512",
+        "pactnet.nuspec",
+        "runtimes/linux-x64/native/libpact_ffi.so",
+        "runtimes/osx-x64/native/libpact_ffi.dylib",
+        "runtimes/win-x64/native/pact_ffi.dll"
+      ]
+    },
+    "PactNet.Abstractions/4.0.0": {
+      "sha512": "+odUB6U29UiYQfLdhh3NfJalSS4h+1vizRMj3BIoGnF8kwXj/FytH4fJpUyqInk2EtOFie8Z6zrGap/majladw==",
+      "type": "package",
+      "path": "pactnet.abstractions/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/PactNet.Abstractions.dll",
+        "lib/netstandard2.0/PactNet.Abstractions.xml",
+        "logo-128x128.png",
+        "pactnet.abstractions.4.0.0.nupkg.sha512",
+        "pactnet.abstractions.nuspec"
       ]
     },
     "PactNet.Native/0.1.0-4386091": {
@@ -6400,7 +6447,7 @@
     "net6.0": [
       "Microsoft.NET.Test.Sdk >= 17.1.0",
       "PactExploration >= 1.0.0",
-      "PactNet >= 4.0.0-4386091",
+      "PactNet >= 4.0.0",
       "PactNet.Native >= 0.1.0-4386091",
       "coverlet.collector >= 3.1.2",
       "xunit >= 2.4.1",
@@ -6457,7 +6504,7 @@
           },
           "PactNet": {
             "target": "Package",
-            "version": "[4.0.0-4386091, )"
+            "version": "[4.0.0, )"
           },
           "PactNet.Native": {
             "target": "Package",

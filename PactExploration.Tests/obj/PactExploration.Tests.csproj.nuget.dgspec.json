@@ -51,7 +51,7 @@
             },
             "PactNet": {
               "target": "Package",
-              "version": "[4.0.0-4386091, )"
+              "version": "[4.0.0, )"
             },
             "PactNet.Native": {
               "target": "Package",
