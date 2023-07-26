@@ -6420,6 +6420,7 @@
       "outputPath": "C:\\Projetos\\pact-exploration\\PactExploration.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Projetos\\pact-exploration\\NuGet.Config",
         "C:\\Users\\leonardo.jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6427,7 +6428,6 @@
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://pactfoundation.jfrog.io/artifactory/api/nuget/default-nuget-local": {}
       },
