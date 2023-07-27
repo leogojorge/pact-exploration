@@ -28,9 +28,9 @@ namespace PactExploration.Tests
             };
                
             //esse webHost sobe a aplicação pra executar os testes. tem casos q é possível rodar teste no provedor sem subir a aplicação, outros não. não entendi ainda quando usar uma maneira ou outra.
-            using (var webHost = WebHost.CreateDefaultBuilder().UseStartup<Startup>().UseUrls(this.pactServiceUri).Build())
-            {
-                webHost.Start();
+            //using (var webHost = WebHost.CreateDefaultBuilder().UseStartup<Startup>().UseUrls(this.pactServiceUri).Build())
+            //{
+            //    webHost.Start();
 
                 var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
 
@@ -44,7 +44,7 @@ namespace PactExploration.Tests
                     .ServiceProvider("PostmanApi", new Uri(pactServiceUri))
                     .HonoursPactWith("PostmanApi")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
                     .Verify();
-            } 
+            //} 
         }
     }
 }

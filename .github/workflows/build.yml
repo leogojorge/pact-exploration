@@ -11,16 +11,12 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_PATH: pact-exploration
-  PROJECT_NAME: PactExploration
-  PACT_BROKER_BASE_URL: https://stonepagamentos.pactflow.io
   PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_CI_CD_WORKSHOP }}
   GIT_COMMIT: ${{ github.sha }}
   GIT_REF: ${{ github.ref }}
   GITHUB_ORG: "pactflow"
-  PACTICIPANT: "pact-exploration"
   GITHUB_WEBHOOK_UUID: "04510dc1-7f0a-4ed2-997d-114bfa86f8ad"
-  PACT_CLI: "docker run --rm -v ${PWD}:${PWD} -e https://stonepagamentos.pactflow.io -e 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 pactfoundation/pact-cli"
+  #PACT_CLI: "docker run --rm -v ${PWD}:${PWD} -e https://stonepagamentos.pactflow.io -e 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 pactfoundation/pact-cli"
 
 jobs:
   build:
