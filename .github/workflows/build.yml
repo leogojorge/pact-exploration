@@ -75,7 +75,7 @@ jobs:
     needs: can-i-deploy
     steps:
       - uses: actions/checkout@v3
-      - run: | 
+      - run: |
         docker pull pactfoundation/pact-cli:latest 
         .env 
         echo"\n========== STAGE can-i-deploy? ==========\n" 
