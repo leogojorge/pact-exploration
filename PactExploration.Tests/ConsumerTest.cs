@@ -36,7 +36,7 @@ namespace TestProject1
 
             var config = new PactConfig
             {
-                PactDir = "C:\\Projetos\\TestandoPact\\pacts",
+                PactDir = "C:\\Projetos\\pact-exploration\\pacts",
                 Outputters = new[] { new XUnitOutput(output) },
                 DefaultJsonSettings = new JsonSerializerSettings
                 {
