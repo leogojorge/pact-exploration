@@ -53,7 +53,7 @@ namespace TestProject1
         {
             // Arange
             pact.UponReceiving("A get for the Postmang/Get API (our provider)")
-                .Given("All seted up properlly")
+                .Given("All seted up properlly") //essa string se transforma no ProviderState quando o teste chega no lado do provedor. ele é usado pra poder testar um endpoint com cenários diferentes. ex: get usuário GIVEN usuário inexistente.
                 .WithRequest(HttpMethod.Get, "/get")
             .WillRespond()
                 .WithStatus(HttpStatusCode.OK)
