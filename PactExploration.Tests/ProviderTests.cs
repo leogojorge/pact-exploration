@@ -35,7 +35,7 @@ namespace PactExploration.Tests
                 var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
 
                 IPactVerifier pactVerifier = new PactVerifier(config);
-                var pactFile = new FileInfo("C:\\Projetos\\pact-exploration\\WeConsumingSomeone-PostmanApi.json");
+                var pactFile = new FileInfo("..\\..\\..\\..\\WeConsumingSomeone-PostmanApi.json");
                 pactVerifier
                     //.FromPactFile(pactFile)
                     .FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions) //se a gente estiver usando um broker
