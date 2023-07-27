@@ -76,12 +76,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: | 
-      docker pull pactfoundation/pact-cli:latest 
-      .env 
-      echo"\n========== STAGE can-i-deploy? ==========\n" 
-      docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN 
-      pactfoundation/pact-cli broker can-i-deploy -b https://stonepagamentos.pactflow.io --pacticipant ${PACTICIPANT} 
-      --version ${GIT_COMMIT} 
-      --to-environment ${ENVIRONMENT} 
-      --retry-while-unknown 30 
-      --retry-interval 10
+        docker pull pactfoundation/pact-cli:latest 
+        .env 
+        echo"\n========== STAGE can-i-deploy? ==========\n" 
+        docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN 
+        pactfoundation/pact-cli broker can-i-deploy -b https://stonepagamentos.pactflow.io --pacticipant ${PACTICIPANT} 
+        --version ${GIT_COMMIT} 
+        --to-environment ${ENVIRONMENT} 
+        --retry-while-unknown 30 
+        --retry-interval 10
