@@ -35,10 +35,10 @@ namespace PactExploration.Tests
                 var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
 
                 IPactVerifier pactVerifier = new PactVerifier(config);
-                var pactFile = new FileInfo("..\\..\\..\\..\\WeConsumingSomeone-PostmanApi.json");
+                var pactFile = new FileInfo("..\\..\\..\\..\\pacts\\WeConsumingSomeone-PostmanApi.json");
                 pactVerifier
-                    //.FromPactFile(pactFile)
-                    .FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions) //se a gente estiver usando um broker
+                    .FromPactFile(pactFile)
+                    //.FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions) //se a gente estiver usando um broker
                     //.FromPactUri() se a gente tiver um repositório online pra compartilhar contratos, feito por nós mesmos
                     .WithProviderStateUrl(new Uri($"{pactServiceUri}/provider-states"))
                     .ServiceProvider("PostmanApi", new Uri(pactServiceUri))
