@@ -45,7 +45,7 @@ namespace TestProject1
             };
 
             // Initialize Rust backend
-            pact = Pact.V3("WeConsumingSomeone", "PostmanApi", config).UsingNativeBackend(9000);
+            pact = Pact.V3("WeConsumingSomeone", "PostmanApi", config).UsingNativeBackend(9000); //sobe um server mock
         }
 
         [Fact]

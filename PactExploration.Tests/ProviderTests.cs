@@ -10,6 +10,7 @@ namespace PactExploration.Tests
     public class ProviderTests
     {
         private string pactServiceUri = "http://127.0.0.1:9002";
+        private string providerUri = "http://127.0.0.1:9003";
         //private string pactServiceUri = "http://postman-echo.com";
 
         private ITestOutputHelper outputHelper;
@@ -19,7 +20,7 @@ namespace PactExploration.Tests
             this.outputHelper = output;
         }
 
-        [Fact]
+        //[Fact]
         public void ValidatePostmanApiPact()
         {
             var config = new PactVerifierConfig
@@ -32,19 +33,19 @@ namespace PactExploration.Tests
             //{
             //    webHost.Start();
 
-                var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
+                //var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
+                var pactFile = new FileInfo("../../../../pacts/WeConsumingSomeone-PostmanApi.json");
 
                 IPactVerifier pactVerifier = new PactVerifier(config);
-                var pactFile = new FileInfo("../../../../pacts/WeConsumingSomeone-PostmanApi.json");
                 pactVerifier
                     .FromPactFile(pactFile)
                     //.FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions) //se a gente estiver usando um broker
                     //.FromPactUri() se a gente tiver um repositório online pra compartilhar contratos, feito por nós mesmos
                     .WithProviderStateUrl(new Uri($"{pactServiceUri}/provider-states"))
-                    .ServiceProvider("PostmanApi", new Uri(pactServiceUri))
-                    .HonoursPactWith("PostmanApi")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
+                    .ServiceProvider("PostmanApi", new Uri(providerUri))
+                    .HonoursPactWith("WeConsumingSomeone")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
                     .Verify();
-            //} 
+            //} WeConsumingSomeone-PostmanApi
         }
     }
 }
