@@ -61,16 +61,15 @@ jobs:
 
     - name: Publish Pact
       run: |
-       #GIT_BRANCH=${GIT_REF:11}
+       GIT_BRANCH=${GIT_REF:11}
+       echo "${GIT_BRANCH} ${GIT_COMMIT} ${PACT_BROKER_BASE_URL} ${PACT_BROKER_TOKEN}"
        docker run --rm -v ${PWD}:${PWD} 
        -e PACT_BROKER_BASE_URL
        -e PACT_BROKER_TOKEN
        pactfoundation/pact-cli:latest
        publish ${PWD}/pacts 
-       --consumer-app-version 100
-       #--consumer-app-version ${GIT_COMMIT} 
-       --branch main
-       #--branch ${GIT_BRANCH}
+       --consumer-app-version ${GIT_COMMIT}
+       --branch ${GIT_BRANCH}
        --broker-base-url https://stonepagamentos.pactflow.io
 
   # Only deploy from master
