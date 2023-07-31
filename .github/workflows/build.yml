@@ -52,8 +52,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test
-      run: dotnet test
-      working-directory: PactExploration.Tests
+    -  run: dotnet test
+    -  working-directory: PactExploration.Tests
   # Runs on branches as well, so we know the status of our PRs
     - run: docker pull pactfoundation/pact-cli:latest
     
