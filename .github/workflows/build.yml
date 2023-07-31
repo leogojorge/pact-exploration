@@ -63,9 +63,7 @@ jobs:
        pactfoundation/pact-cli publish ${PWD}/pacts 
        -e https://stonepagamentos.pactflow.io 
        -e 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 
-       --consumer-app-version git rev-parse HEAD git rev-parse 
-       --abbrev-ref HEAD 
-       --broker-base-url "https://stonepagamentos.pactflow.io"
+       --consumer-app-version ${GIT_COMMIT} --branch ${GIT_BRANCH}
 
   # Only deploy from master
     - name: Can I Deploy?
