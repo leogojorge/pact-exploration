@@ -57,7 +57,7 @@ jobs:
   # Runs on branches as well, so we know the status of our PRs
     - run: docker pull pactfoundation/pact-cli:latest
     - name: Publish Pact
-      run: GIT_BRANCH=${GIT_REF:11} docker run --rm -v ${PWD}:${PWD} -e https://stonepagamentos.pactflow.io -e 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 pactfoundation/pact-cli publish ${PWD}/pacts --consumer-app-version && git rev-parse HEAD --branch && git rev-parse --abbrev-ref HEAD --broker-base-url https://stonepagamentos.pactflow.io
+      run: GIT_BRANCH=${GIT_REF:11} docker run --rm -v ${PWD}:${PWD} -e https://stonepagamentos.pactflow.io -e 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 pactfoundation/pact-cli publish ${PWD}/pacts --consumer-app-version git rev-parse HEAD && git rev-parse --abbrev-ref HEAD --broker-base-url https://stonepagamentos.pactflow.io
 
   # Only deploy from master
     - uses: actions/checkout@v3
