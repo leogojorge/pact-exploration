@@ -56,6 +56,8 @@ jobs:
       working-directory: PactExploration.Tests
   # Runs on branches as well, so we know the status of our PRs
     - run: docker pull pactfoundation/pact-cli:latest
+    
+    - uses: actions/checkout@v3
     - name: Publish Pact
     - run: |
        GIT_BRANCH=${GIT_REF:11}
@@ -78,9 +80,3 @@ jobs:
        --to-environment ${ENVIRONMENT} 
        --retry-while-unknown 30 
        --retry-interval 10
-
-
-# teste biderecional
-# teste de provedor na prática
-# can-i-deploy
-# provedor vai ter um teste só,aka 1 FACT no xunityk só q ele vai ter q ter 1 setup pra cada cenário do consumidor 
