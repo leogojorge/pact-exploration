@@ -60,9 +60,9 @@ jobs:
        GIT_BRANCH=${GIT_REF:11} 
        docker pull pactfoundation/pact-cli:latest 
        docker run --rm -v ${PWD}:${PWD} 
-       pactfoundation/pact-cli publish ${PWD}/pacts 
        -e https://stonepagamentos.pactflow.io 
        -e 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 
+       pactfoundation/pact-cli publish ${PWD}/pacts 
        --consumer-app-version ${GIT_COMMIT} --branch ${GIT_BRANCH}
 
   # Only deploy from master
