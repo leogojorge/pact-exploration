@@ -64,8 +64,8 @@ jobs:
        GIT_BRANCH=${GIT_REF:11}
        echo "${GIT_BRANCH}" &&
        docker run --rm -v ${PWD}:${PWD} 
-       -e https://stonepagamentos.pactflow.io 
-       -e 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 
+       #-e https://stonepagamentos.pactflow.io 
+       #-e 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 
        pactfoundation/pact-cli:latest
        publish ${PWD}/pacts 
        --consumer-app-version ${GIT_COMMIT} 
