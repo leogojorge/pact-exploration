@@ -57,8 +57,8 @@ jobs:
   # Runs on branches as well, so we know the status of our PRs
     - run: docker pull pactfoundation/pact-cli:latest
     
-    - uses: actions/checkout@v3
     - name: Publish Pact
+    - uses: actions/checkout@v3
     - run: |
        GIT_BRANCH=${GIT_REF:11}
        docker run --rm -v ${PWD}:${PWD}
@@ -69,6 +69,7 @@ jobs:
        --broker-base-url "https://stonepagamentos.pactflow.io"
 
   # Only deploy from master
+    - name: Can I Deploy?
     - uses: actions/checkout@v3
     - run: |
        docker pull pactfoundation/pact-cli:latest 
