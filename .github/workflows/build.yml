@@ -60,7 +60,8 @@ jobs:
 
     - name: Publish Pact
       run: |
-       GIT_BRANCH=${GIT_REF:11} 
+       GIT_BRANCH=${GIT_REF:11}
+       echo"PWD -> ${PWD}:${PWD}"
        docker run --rm -v ${PWD}:${PWD} 
        -e https://stonepagamentos.pactflow.io 
        -e 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 
