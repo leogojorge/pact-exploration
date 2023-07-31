@@ -12,7 +12,7 @@ on:
 
 env:
   PACT_BROKER_BASE_URL: https://stonepagamentos.pactflow.io
-  PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_CI_CD_WORKSHOP }}
+  PACT_BROKER_TOKEN: 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 
   GIT_COMMIT: ${{ github.sha }}
   GIT_REF: ${{ github.ref }}
   GITHUB_ORG: "pactflow"
