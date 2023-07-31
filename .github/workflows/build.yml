@@ -51,12 +51,12 @@ jobs:
     #    ]
     steps:
     - uses: actions/checkout@v3
-    - name: Test
+      name: Test
       run: dotnet test
       working-directory: PactExploration.Tests
     
     - name: Publish Pact
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
       run: |
        GIT_BRANCH=${GIT_REF:11}
        docker pull pactfoundation/pact-cli:latest
@@ -69,7 +69,7 @@ jobs:
 
   # Only deploy from master
     - name: Can I Deploy?
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
       run: |
        docker pull pactfoundation/pact-cli:latest 
        .env 
