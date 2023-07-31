@@ -62,7 +62,7 @@ jobs:
     - name: Publish Pact
       run: |
        GIT_BRANCH=${GIT_REF:11}
-       echo "${GIT_BRANCH} ${GIT_COMMIT} ${PACT_BROKER_BASE_URL} ${PACT_BROKER_TOKEN}"
+       echo "${GIT_BRANCH} ${GIT_COMMIT} ${PACT_BROKER_BASE_URL} ${PACT_BROKER_TOKEN} ${GIT_REF:11}"
        docker run --rm -v ${PWD}:${PWD} 
        -e PACT_BROKER_BASE_URL
        -e PACT_BROKER_TOKEN
