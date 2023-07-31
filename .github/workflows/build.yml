@@ -56,9 +56,9 @@ jobs:
       working-directory: PactExploration.Tests
     
     - name: Publish Pact
+      run: docker pull pactfoundation/pact-cli:latest 
       run: |
        GIT_BRANCH=${GIT_REF:11} 
-       docker pull pactfoundation/pact-cli:latest 
        docker run --rm -v ${PWD}:${PWD} 
        -e https://stonepagamentos.pactflow.io 
        -e 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 
