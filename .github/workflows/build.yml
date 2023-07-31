@@ -58,14 +58,14 @@ jobs:
     - name: Publish Pact
       uses: actions/checkout@v3
       run: |
-      GIT_BRANCH=${GIT_REF:11}
-      docker pull pactfoundation/pact-cli:latest
-      docker run --rm -v ${PWD}:${PWD}
-      -e https://stonepagamentos.pactflow.io
-      -e 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
-      pactfoundation/pact-cli publish ${PWD}/pacts --consumer-app-version git rev-parse HEAD
-      git rev-parse --abbrev-ref HEAD
-      --broker-base-url "https://stonepagamentos.pactflow.io"
+       GIT_BRANCH=${GIT_REF:11}
+       docker pull pactfoundation/pact-cli:latest
+       docker run --rm -v ${PWD}:${PWD}
+       -e https://stonepagamentos.pactflow.io
+       -e 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
+       pactfoundation/pact-cli publish ${PWD}/pacts --consumer-app-version git rev-parse HEAD
+       git rev-parse --abbrev-ref HEAD
+       --broker-base-url "https://stonepagamentos.pactflow.io"
 
   # Only deploy from master
     - name: Can I Deploy?
