@@ -55,8 +55,10 @@ jobs:
       run: dotnet test
       working-directory: PactExploration.Tests
     
-    - name: Publish Pact
+    - name: Pull PactCLI
       run: docker pull pactfoundation/pact-cli:latest 
+
+    - name: Publish Pact
       run: |
        GIT_BRANCH=${GIT_REF:11} 
        docker run --rm -v ${PWD}:${PWD} 
