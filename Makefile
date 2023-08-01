@@ -22,7 +22,11 @@ else
 endif
 
 build-and-run:
-	docker-compose up --build -d PactExploration
+	restore
+	build
+	run_tests
+	publish_pacts
+	can_i_deploy
 
 build:
 	dotnet build
@@ -30,11 +34,11 @@ build:
 restore:
 	dotnet restore
 
-publish_pacts:
+publish_pacts: .env
 	@echo "\n========== STAGE: publish pacts ==========\n"
 	@"${PACT_CLI}" publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --branch ${GIT_BRANCH}
 
-can_i_deploy:
+can_i_deploy: .env
 	@echo "\n========== STAGE: can-i-deploy? ==========\n"
 	@"${PACT_CLI}" broker can-i-deploy \
 	  --pacticipant ${PACTICIPANT} \
@@ -43,27 +47,9 @@ can_i_deploy:
 	  --retry-while-unknown 30 \
 	  --retry-interval 10
 
-all: test
-
-## ====================
-## CI tasks
-## ====================
-
-ci: test publish_pacts can_i_deploy $(DEPLOY_TARGET)
-
-# Run the ci target from a developer machine with the environment variables
-# set as if it was on CI.
-# Use this for quick feedback when playing around with your workflows.
-fake_ci: .env
-	@CI=true \
-	REACT_APP_API_BASE_URL=http://localhost:8080 \
-	make ci
-
-
-
-## =====================
-## Build/test tasks
-## =====================
+deploy_app:
+	@echo "\n========== STAGE: deploy ==========\n"
+	@echo "Deploying to ${ENVIRONMENT}"
 
 run_tests: .env
 	@echo "\n========== STAGE: test (pact) ==========\n"
@@ -72,7 +58,6 @@ run_tests: .env
 ## =====================
 ## Deploy tasks
 ## =====================
-
 
 record_deployment: .env
 	@"${PACT_CLI}" broker record-deployment --pacticipant ${PACTICIPANT} --version ${GIT_COMMIT} --environment ${ENVIRONMENT}
@@ -109,6 +94,8 @@ create_or_update_github_commit_status_webhook:
 test_github_webhook:
 	@curl -v -X POST ${PACT_BROKER_BASE_URL}/webhooks/${GITHUB_WEBHOOK_UUID}/execute -H "Authorization: Bearer ${PACT_BROKER_TOKEN}"
 
+no_deploy:
+	@echo "Not deploying as not on master branch"
 
 ## ======================
 ## Misc
