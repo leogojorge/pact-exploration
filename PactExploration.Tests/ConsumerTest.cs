@@ -40,7 +40,7 @@ namespace TestProject1
 
             pact.UponReceiving("A get an entity from a provider")
                 .Given("It already has 2 entities") //essa string se transforma no ProviderState quando o teste chega no lado do provedor. ele é usado pra poder testar um endpoint com cenários diferentes. ex: get usuário GIVEN usuário inexistente.
-                .WithRequest(HttpMethod.Get, "/api/get")
+                .WithRequest(HttpMethod.Get, "/api/some-data")
             .WillRespond()
                 .WithStatus(HttpStatusCode.OK)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")

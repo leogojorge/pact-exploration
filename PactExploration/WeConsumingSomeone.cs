@@ -7,7 +7,7 @@ namespace PactExploration
 {
     public class WeConsumingSomeone
     {
-        private readonly HttpClient ProviderClient;
+        private readonly HttpClient ProviderClient; //http://localhost:5267
 
         public WeConsumingSomeone(Uri uri)
         {
@@ -17,14 +17,14 @@ namespace PactExploration
 
         public async Task<HttpResponseMessage> GetSomeData()
         {
-            var response = await this.ProviderClient.GetAsync("/api/get");
+            var response = await this.ProviderClient.GetAsync("api/some-data");
 
             return response;
         }
 
         public async Task<HttpResponseMessage> GetSomeDataById(string id)
         {
-            var response = await this.ProviderClient.GetAsync($"/api/get/{id}");
+            var response = await this.ProviderClient.GetAsync($"/api/some-data/{id}");
 
             return response;
         }
@@ -34,14 +34,14 @@ namespace PactExploration
             var requestAsJson = JsonConvert.SerializeObject(request);
             var data = new StringContent(requestAsJson, Encoding.UTF8, "application/json");
 
-            var response = await this.ProviderClient.PostAsync("/api", data);
+            var response = await this.ProviderClient.PostAsync("/api/some-data", data);
 
             return response;
         }
 
         public async Task<HttpResponseMessage> DeleteSomeData(string id)
         {
-            var response = await this.ProviderClient.DeleteAsync($"/api/{id}");
+            var response = await this.ProviderClient.DeleteAsync($"/api/some-data/{id}");
 
             return response;
         }
