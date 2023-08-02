@@ -1,7 +1,10 @@
+SHELL = sh -xv
 GITHUB_ORG="pactflow"
 PACTICIPANT="pact-exploration"
 GITHUB_WEBHOOK_UUID := "04510dc1-7f0a-4ed2-997d-114bfa86f8ad"
-PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli"
+PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:latest"
+#PACT_CLI="docker run --rm -v C:\Projetos\pact-exploration:/app pactfoundation/pact-cli"
+#PACT_CLI="docker run --rm -w ${PWD} -v ${PWD}:${PWD} pactfoundation/pact-cli:latest"
 
 .EXPORT_ALL_VARIABLES:
 GIT_COMMIT?=$(shell git rev-parse HEAD)
@@ -22,11 +25,11 @@ else
 endif
 
 build-and-run:
-	restore
-	build
-	run_tests
-	publish_pacts
-	can_i_deploy
+	make restore
+	make build
+	make run_tests
+	make publish_pacts
+	make can_i_deploy
 
 build:
 	dotnet build
@@ -34,9 +37,16 @@ build:
 restore:
 	dotnet restore
 
+run_tests: .env
+	@echo "\n========== STAGE: test (pact) ==========\n"
+	dotnet test
+
 publish_pacts: .env
-	@echo "\n========== STAGE: publish pacts ==========\n"
-	@"${PACT_CLI}" publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --branch ${GIT_BRANCH}
+	@echo "========== STAGE: publish pacts =========="
+	@"${PACT_CLI}" publish ${PWD}/pacts \
+	  --consumer-app-version ${GIT_COMMIT} \
+	  --branch ${GIT_BRANCH} \
+	  --broker-base-url http://localhost:9292 
 
 can_i_deploy: .env
 	@echo "\n========== STAGE: can-i-deploy? ==========\n"
@@ -50,10 +60,6 @@ can_i_deploy: .env
 deploy_app:
 	@echo "\n========== STAGE: deploy ==========\n"
 	@echo "Deploying to ${ENVIRONMENT}"
-
-run_tests: .env
-	@echo "\n========== STAGE: test (pact) ==========\n"
-	dotnet test
 
 ## =====================
 ## Deploy tasks
