@@ -46,7 +46,7 @@ publish_pacts: .env
 	@"${PACT_CLI}" publish ${PWD}/pacts \
 	  --consumer-app-version ${GIT_COMMIT} \
 	  --branch ${GIT_BRANCH} \
-	  --broker-base-url http://localhost:9292 
+	  --broker-base-url ${PACT_BROKER_BASE_URL}
 
 can_i_deploy: .env
 	@echo "\n========== STAGE: can-i-deploy? ==========\n"
