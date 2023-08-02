@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using PactExploration;
+using PactExploration.Models;
 using PactExploration.Tests;
 using PactNet;
 using PactNet.Matchers;
@@ -14,26 +15,9 @@ namespace TestProject1
     {
         private WeConsumingSomeone WeConsumingSomeone;
         private IPactBuilderV3 pact;
-        private ProviderGetResponse responseBody;
 
         public ConsumerTest(ITestOutputHelper output)
         {
-            responseBody = new ProviderGetResponse()
-            {
-                url = "http://postman-echo.com/get",
-                args = new(),
-                headers = new()
-                {
-                    xforwardedport = "80",
-                    xforwardedproto = "http",
-                    host = "postman-echo.com",
-                    useragent = "PostmanRuntime/7.32.3",
-                    accept = "*/*",
-                    cachecontrol = "no-cache",
-                    acceptencoding = "gzip, deflate, br",
-                }
-            };
-
             var config = new PactConfig
             {
                 PactDir = "../../../../pacts",
@@ -45,20 +29,22 @@ namespace TestProject1
             };
 
             // Initialize Rust backend
-            pact = Pact.V3("WeConsumingSomeone", "PostmanApi", config).UsingNativeBackend(9000); //sobe um server mock
+            pact = Pact.V3("WeConsumingSomeone", "SomeProvider", config).UsingNativeBackend(9000); //sobe um server mock
         }
 
         [Fact]
         public async void ValidGetOnPostmanApi()
         {
             // Arange
-            pact.UponReceiving("A get for the Postmang/Get API (our provider)")
-                .Given("All seted up properlly") //essa string se transforma no ProviderState quando o teste chega no lado do provedor. ele é usado pra poder testar um endpoint com cenários diferentes. ex: get usuário GIVEN usuário inexistente.
-                .WithRequest(HttpMethod.Get, "/get")
+            var expectedResponse = GeneretaGetSomeDataResponse();
+
+            pact.UponReceiving("A get an entity from a provider")
+                .Given("It already has 2 entities") //essa string se transforma no ProviderState quando o teste chega no lado do provedor. ele é usado pra poder testar um endpoint com cenários diferentes. ex: get usuário GIVEN usuário inexistente.
+                .WithRequest(HttpMethod.Get, "/api/get")
             .WillRespond()
                 .WithStatus(HttpStatusCode.OK)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")
-                .WithJsonBody(new TypeMatcher(responseBody));
+                .WithJsonBody(new TypeMatcher(expectedResponse));
 
             //act assert
             await pact.VerifyAsync(async context =>
@@ -69,24 +55,26 @@ namespace TestProject1
             });
         }
 
-        [Fact]
-        public async void InvalidPathOnPostmanApi()
+        private List<ProviderGetSomeDataByIdResponse> GeneretaGetSomeDataResponse()
         {
-            //arrange
-            pact.UponReceiving("A invalid path for PostmanApi")
-                .Given("All seted up properlly")
-                .WithRequest(HttpMethod.Get, "/get")
-            .WillRespond()
-                .WithStatus(HttpStatusCode.NotFound)
-                .WithHeader("Content-Type", "application/json; charset=utf-8")
-                .WithJsonBody(null);
-
-            await pact.VerifyAsync(async context => 
+            return new List<ProviderGetSomeDataByIdResponse>()
             {
-                this.WeConsumingSomeone = new WeConsumingSomeone(context.MockServerUri);
-                var response = await this.WeConsumingSomeone.GetSomeData();
-                Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-            });
+                new()
+                {
+                    Id = new Guid("993a1ad5-7f7a-4a91-91fb-c0ee62755a2d"),
+                    Name = "Name1",
+                    LastName = "LastName1",
+                    Age = "Age1",
+                },
+                new()
+                {
+                    Id = new Guid("8518eb80-c2c4-4c1f-8573-905af0d7f3e2"),
+                    Name = "Name2",
+                    LastName = "LastName2",
+                    Age = "Age3",
+                }
+            };
         }
+
     }
 }

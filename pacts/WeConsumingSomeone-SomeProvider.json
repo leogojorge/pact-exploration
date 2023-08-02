@@ -1,0 +1,63 @@
+{
+  "consumer": {
+    "name": "WeConsumingSomeone"
+  },
+  "interactions": [
+    {
+      "description": "A get an entity from a provider",
+      "providerStates": [
+        {
+          "name": "It already has 2 entities"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/get"
+      },
+      "response": {
+        "body": [
+          {
+            "age": "Age1",
+            "id": "993a1ad5-7f7a-4a91-91fb-c0ee62755a2d",
+            "lastName": "LastName1",
+            "name": "Name1"
+          },
+          {
+            "age": "Age3",
+            "id": "8518eb80-c2c4-4c1f-8573-905af0d7f3e2",
+            "lastName": "LastName2",
+            "name": "Name2"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "version": "0.9.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "SomeProvider"
+  }
+}

@@ -1,28 +1,49 @@
-﻿namespace PactExploration
+﻿using Newtonsoft.Json;
+using System.Text;
+using System;
+using PactExploration.Models;
+
+namespace PactExploration
 {
     public class WeConsumingSomeone
     {
-        private readonly Uri PostmanBaseUri; //our provider  = "http://postman-echo.com"
+        private readonly HttpClient ProviderClient;
 
         public WeConsumingSomeone(Uri uri)
         {
-            this.PostmanBaseUri = uri;
+            this.ProviderClient = new HttpClient();
+            this.ProviderClient.BaseAddress = uri;
         }
 
         public async Task<HttpResponseMessage> GetSomeData()
         {
-            using (var client = new HttpClient { BaseAddress = this.PostmanBaseUri })
-            {
-                try
-                {
-                    var response = await client.GetAsync("/get");
-                    return response;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("There was a problem connecting to Postman API.", ex);
-                }
-            }
+            var response = await this.ProviderClient.GetAsync("/api/get");
+
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> GetSomeDataById(string id)
+        {
+            var response = await this.ProviderClient.GetAsync($"/api/get/{id}");
+
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> PostSomeData(ProviderPostRequest request)
+        {
+            var requestAsJson = JsonConvert.SerializeObject(request);
+            var data = new StringContent(requestAsJson, Encoding.UTF8, "application/json");
+
+            var response = await this.ProviderClient.PostAsync("/api", data);
+
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> DeleteSomeData(string id)
+        {
+            var response = await this.ProviderClient.DeleteAsync($"/api/{id}");
+
+            return response;
         }
     }
 }
