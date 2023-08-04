@@ -55,6 +55,7 @@ namespace TestProject1
             });
         }
 
+        [Fact]
         public async void Validate_GetProductById_WithExistingId_OnProviderApi()
         {
             // Arange
@@ -62,7 +63,7 @@ namespace TestProject1
 
             pact.UponReceiving("A get entity by id from a provider")
                 .Given("Products with id 993a1ad5-7f7a-4a91-91fb-c0ee62755a2d exist")
-                .WithRequest(HttpMethod.Get, "/api/some-data/")
+                .WithRequest(HttpMethod.Get, "/api/some-data")
             .WillRespond()
                 .WithStatus(HttpStatusCode.OK)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")
@@ -77,6 +78,7 @@ namespace TestProject1
             });
         }
 
+        [Fact]
         public async void Validate_GetProductById_WithNonExistantId_OnProviderApi()
         {
             // Arange
@@ -84,7 +86,7 @@ namespace TestProject1
 
             pact.UponReceiving("A get entity by id from a provider")
                 .Given("Id not stored")
-                .WithRequest(HttpMethod.Get, "/api/some-data/")
+                .WithRequest(HttpMethod.Get, "/api/some-data")
             .WillRespond()
                 .WithStatus(HttpStatusCode.OK)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")
