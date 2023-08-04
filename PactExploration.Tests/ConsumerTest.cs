@@ -88,7 +88,7 @@ namespace TestProject1
                 .Given("Id not stored")
                 .WithRequest(HttpMethod.Get, "/api/some-data")
             .WillRespond()
-                .WithStatus(HttpStatusCode.OK)
+                .WithStatus(HttpStatusCode.NoContent)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")
                 .WithJsonBody(new TypeMatcher(null));
 
