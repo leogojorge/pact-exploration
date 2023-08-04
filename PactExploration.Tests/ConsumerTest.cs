@@ -97,7 +97,7 @@ namespace TestProject1
             {
                 this.WeConsumingSomeone = new WeConsumingSomeone(context.MockServerUri); //mermão, se a url da api for diferente da url q o Pact usa,o teste quebra, pois o Pact entende que são serviços diferentes, então ele considera que o serviço que ele está olhando não recebeu nenhuma requisição
                 var response = await WeConsumingSomeone.GetSomeData();
-                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+                Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
             });
         }
 
