@@ -1,0 +1,118 @@
+{
+  "consumer": {
+    "name": "WeConsumingSomeone"
+  },
+  "interactions": [
+    {
+      "description": "A get an entity from a provider",
+      "providerStates": [
+        {
+          "name": "2 initial products created"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/some-data"
+      },
+      "response": {
+        "body": [
+          {
+            "age": "Age1",
+            "id": "993a1ad5-7f7a-4a91-91fb-c0ee62755a2d",
+            "lastName": "LastName1",
+            "name": "Name1"
+          },
+          {
+            "age": "Age3",
+            "id": "8518eb80-c2c4-4c1f-8573-905af0d7f3e2",
+            "lastName": "LastName2",
+            "name": "Name2"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A get entity by id from a provider",
+      "providerStates": [
+        {
+          "name": "Id not stored"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/some-data/8539cfbb-32d8-49c2-9c33-01f8159a1dae"
+      },
+      "response": {
+        "headers": {
+          "Content-Length": "0"
+        },
+        "status": 204
+      }
+    },
+    {
+      "description": "A get entity by id from a provider",
+      "providerStates": [
+        {
+          "name": "Products with id 993a1ad5-7f7a-4a91-91fb-c0ee62755a2d exist"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/some-data/993a1ad5-7f7a-4a91-91fb-c0ee62755a2d"
+      },
+      "response": {
+        "body": {
+          "age": "Age3",
+          "id": "8518eb80-c2c4-4c1f-8573-905af0d7f3e2",
+          "lastName": "LastName2",
+          "name": "Name2"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "version": "0.9.3"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "SomeProvider"
+  }
+}

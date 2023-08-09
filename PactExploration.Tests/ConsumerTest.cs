@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using PactExploration;
@@ -22,6 +23,7 @@ namespace TestProject1
             {
                 PactDir = "../../../../pacts",
                 Outputters = new[] { new XUnitOutput(output) },
+                LogDir = "pact_logs",
                 DefaultJsonSettings = new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -59,21 +61,22 @@ namespace TestProject1
         public async void Validate_GetProductById_WithExistingId_OnProviderApi()
         {
             // Arange
-            var expectedResponse = GeneretaGetSomeDataResponse();
+            var expectedResponse = GeneretaGetSomeDataResponse()[1];
+            Guid idPersisted = new Guid("993a1ad5-7f7a-4a91-91fb-c0ee62755a2d");
 
             pact.UponReceiving("A get entity by id from a provider")
                 .Given("Products with id 993a1ad5-7f7a-4a91-91fb-c0ee62755a2d exist")
-                .WithRequest(HttpMethod.Get, "/api/some-data")
+                .WithRequest(HttpMethod.Get, $"/api/some-data/{idPersisted}")
             .WillRespond()
                 .WithStatus(HttpStatusCode.OK)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")
-                .WithJsonBody(new TypeMatcher(null));
+                .WithJsonBody(new TypeMatcher(expectedResponse));
 
             //act assert
             await pact.VerifyAsync(async context =>
             {
                 this.WeConsumingSomeone = new WeConsumingSomeone(context.MockServerUri); //mermão, se a url da api for diferente da url q o Pact usa,o teste quebra, pois o Pact entende que são serviços diferentes, então ele considera que o serviço que ele está olhando não recebeu nenhuma requisição
-                var response = await WeConsumingSomeone.GetSomeData();
+                var response = await WeConsumingSomeone.GetSomeDataById(idPersisted.ToString());
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             });
         }
@@ -83,20 +86,20 @@ namespace TestProject1
         {
             // Arange
             var expectedResponse = GeneretaGetSomeDataResponse();
+            Guid idNotPersisted = new Guid("8539cfbb-32d8-49c2-9c33-01f8159a1dae");
 
             pact.UponReceiving("A get entity by id from a provider")
                 .Given("Id not stored")
-                .WithRequest(HttpMethod.Get, "/api/some-data")
+                .WithRequest(HttpMethod.Get, $"/api/some-data/{idNotPersisted}")
             .WillRespond()
                 .WithStatus(HttpStatusCode.NoContent)
-                .WithHeader("Content-Type", "application/json; charset=utf-8")
-                .WithJsonBody(new TypeMatcher(null));
+                .WithHeader("Content-Length", "0");
 
             //act assert
             await pact.VerifyAsync(async context =>
             {
                 this.WeConsumingSomeone = new WeConsumingSomeone(context.MockServerUri); //mermão, se a url da api for diferente da url q o Pact usa,o teste quebra, pois o Pact entende que são serviços diferentes, então ele considera que o serviço que ele está olhando não recebeu nenhuma requisição
-                var response = await WeConsumingSomeone.GetSomeData();
+                var response = await WeConsumingSomeone.GetSomeDataById(idNotPersisted.ToString());
                 Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
             });
         }
