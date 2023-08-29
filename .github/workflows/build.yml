@@ -32,7 +32,7 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: PactExploration
+      #working-directory: PactExploration
 
     - name: Build
       run: dotnet build --no-restore
