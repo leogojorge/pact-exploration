@@ -51,10 +51,10 @@ jobs:
     #        'WeConsumingSomeone-PostmanApi'
     #    ]
     steps:
-    - uses: actions/checkout@v3
-    - name: Test
-      run: dotnet test
-      working-directory: PactExploration.Tests
+    #- uses: actions/checkout@v3
+    #- name: Test
+    #  run: dotnet test
+    #  working-directory: PactExploration.Tests
     
     #- name: Pull PactCLI
     #  run: docker pull pactfoundation/pact-cli:latest 

@@ -4,12 +4,12 @@ services:
   pact-broker:
     image: pactfoundation/pact-broker:latest
     ports:
-      - "9292:9292"
+      - "9293:9292"
     depends_on:
       - postgres
     environment:
       PACT_BROKER_BASIC_AUTH_ENABLED: 'false'
-      PACT_BROKER_BASE_URL: 'http://localhost:9292'
+      PACT_BROKER_BASE_URL: 'http://localhost:9293'
       PACT_BROKER_DATABASE_URL: "postgres://postgres:password@postgres/postgres"
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG

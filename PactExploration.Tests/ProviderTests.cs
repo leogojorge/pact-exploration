@@ -45,7 +45,7 @@ namespace PactExploration.Tests
                     .ServiceProvider("PostmanApi", new Uri(providerUri))
                     .HonoursPactWith("WeConsumingSomeone")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
                     .Verify();
-            //} WeConsumingSomeone-PostmanApi
+            //}
         }
     }
 }

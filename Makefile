@@ -1,10 +1,13 @@
 SHELL = sh -xv
 GITHUB_ORG="pactflow"
 PACTICIPANT="WeConsumingSomeone"
+#PACT_BROKER_BASE_URL="http://localhost:9293"
+PACT_BROKER_BASE_URL=https://stonepagamentos.pactflow.io
+PACT_BROKER_TOKEN="faM71GPVLZkuKYPcRMYo2g"
 GITHUB_WEBHOOK_UUID := "04510dc1-7f0a-4ed2-997d-114bfa86f8ad"
-PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:latest"
-#PACT_CLI="docker run --rm -v C:\Projetos\pact-exploration:/app pactfoundation/pact-cli"
-#PACT_CLI="docker run --rm -w ${PWD} -v ${PWD}:${PWD} pactfoundation/pact-cli:latest"
+PACT_CLI="docker run --rm -v $(CURDIR):/app -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:latest"
+PACT_CLI_locally="docker run --rm -v $(CURDIR):/app --network="host" pactfoundation/pact-cli:latest"
+
 
 .EXPORT_ALL_VARIABLES:
 GIT_COMMIT?=$(shell git rev-parse HEAD)
@@ -31,6 +34,13 @@ build-and-run:
 	make publish_pacts
 	make can_i_deploy
 
+build-and-run-locally:
+	make restore
+	make build
+	make run_tests
+	make publish_pacts_locally
+	make can_i_deploy_locally
+
 build:
 	dotnet build
 
@@ -41,12 +51,18 @@ run_tests: .env
 	@echo "\n========== STAGE: test (pact) ==========\n"
 	dotnet test
 
-publish_pacts: .env
-	@echo "========== STAGE: publish pacts =========="
-	@"${PACT_CLI}" publish ${PWD}/pacts \
+publish_pacts_locally: .env
+	@echo "========== STAGE: publish pacts =========="	
+	@"${PACT_CLI_locally}" publish /app/pacts \
 	  --consumer-app-version ${GIT_COMMIT} \
 	  --branch ${GIT_BRANCH} \
 	  --broker-base-url ${PACT_BROKER_BASE_URL}
+
+publish_pacts: .env
+	@echo "========== STAGE: publish pacts =========="
+	@"${PACT_CLI}" publish /app/pacts \
+	  --consumer-app-version ${GIT_COMMIT} \
+	  --branch ${GIT_BRANCH}
 
 can_i_deploy: .env
 	@echo "\n========== STAGE: can-i-deploy? ==========\n"
@@ -57,6 +73,16 @@ can_i_deploy: .env
 	  --retry-while-unknown 30 \
 	  --retry-interval 10
 
+can_i_deploy_locally: .env
+	@echo "\n========== STAGE: can-i-deploy? ==========\n"
+	@"${PACT_CLI_locally}" broker can-i-deploy \
+	  --pacticipant ${PACTICIPANT} \
+	  --version ${GIT_COMMIT} \
+	  --to-environment ${ENVIRONMENT} \
+	  --broker-base-url ${PACT_BROKER_BASE_URL} \
+	  --retry-interval 5 \
+	  --retry-while-unknown 10 \
+	  
 deploy_app:
 	@echo "\n========== STAGE: deploy ==========\n"
 	@echo "Deploying to ${ENVIRONMENT}"
